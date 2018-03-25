@@ -17,6 +17,8 @@ public class Cotacao {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name = "ativo")
+	private String ativo;
 	@Column(name = "dt_cotacao")
 	private Date data;
 	@Column(name = "abertura")
@@ -45,96 +47,135 @@ public class Cotacao {
 	private Double ifr2DiaAnt;
 	@Column(name = "alvo")
 	private Double alvo;
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public Date getData() {
 		return data;
 	}
+
 	public void setData(Date data) {
 		this.data = data;
 	}
+
 	public Double getAber() {
 		return aber;
 	}
+
 	public void setAber(Double aber) {
 		this.aber = aber;
 	}
+
 	public Double getAlta() {
 		return alta;
 	}
+
 	public void setAlta(Double alta) {
 		this.alta = alta;
 	}
+
 	public Double getBaixa() {
 		return baixa;
 	}
+
 	public void setBaixa(Double baixa) {
 		this.baixa = baixa;
 	}
+
 	public Double getFech() {
 		return fech;
 	}
+
 	public void setFech(Double fech) {
 		this.fech = fech;
 	}
+
 	public Double getVolume() {
 		return volume;
 	}
+
 	public void setVolume(Double volume) {
 		this.volume = volume;
 	}
+
 	public Double getAbertDiaAnt() {
 		return abertDiaAnt;
 	}
+
 	public void setAbertDiaAnt(Double abertDiaAnt) {
 		this.abertDiaAnt = abertDiaAnt;
 	}
+
 	public Double getAltaDiaAnt() {
 		return altaDiaAnt;
 	}
+
 	public void setAltaDiaAnt(Double altaDiaAnt) {
 		this.altaDiaAnt = altaDiaAnt;
 	}
+
 	public Double getBaixaDiaAnt() {
 		return baixaDiaAnt;
 	}
+
 	public void setBaixaDiaAnt(Double baixaDiaAnt) {
 		this.baixaDiaAnt = baixaDiaAnt;
 	}
+
 	public Double getFechDiaAnt() {
 		return fechDiaAnt;
 	}
+
 	public void setFechDiaAnt(Double fechDiaAnt) {
 		this.fechDiaAnt = fechDiaAnt;
 	}
+
 	public Double getVolDiaAnt() {
 		return volDiaAnt;
 	}
+
 	public void setVolDiaAnt(Double volDiaAnt) {
 		this.volDiaAnt = volDiaAnt;
 	}
+
 	public Double getIfr2() {
 		return ifr2;
 	}
+
 	public void setIfr2(Double ifr2) {
 		this.ifr2 = ifr2;
 	}
+
 	public Double getIfr2DiaAnt() {
 		return ifr2DiaAnt;
 	}
+
 	public void setIfr2DiaAnt(Double ifr2DiaAnt) {
 		this.ifr2DiaAnt = ifr2DiaAnt;
 	}
+
 	public Double getAlvo() {
 		return alvo;
 	}
+
 	public void setAlvo(Double alvo) {
 		this.alvo = alvo;
 	}
+
+	public String getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(String ativo) {
+		this.ativo = ativo;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -156,6 +197,7 @@ public class Cotacao {
 		result = prime * result + ((volume == null) ? 0 : volume.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -242,13 +284,15 @@ public class Cotacao {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
-		return "Cotacao [id=" + id + ", data=" + data + ", aber=" + aber + ", alta=" + alta + ", baixa=" + baixa
-				+ ", fech=" + fech + ", volume=" + volume + ", abertDiaAnt=" + abertDiaAnt + ", altaDiaAnt="
-				+ altaDiaAnt + ", baixaDiaAnt=" + baixaDiaAnt + ", fechDiaAnt=" + fechDiaAnt + ", volDiaAnt="
-				+ volDiaAnt + ", ifr2=" + ifr2 + ", ifr2DiaAnt=" + ifr2DiaAnt + ", alvo=" + alvo + "]";
+		return "Cotacao [id=" + id + ", ativo=" + ativo + ", data=" + data + ", aber=" + aber + ", alta=" + alta
+				+ ", baixa=" + baixa + ", fech=" + fech + ", volume=" + volume + ", abertDiaAnt=" + abertDiaAnt
+				+ ", altaDiaAnt=" + altaDiaAnt + ", baixaDiaAnt=" + baixaDiaAnt + ", fechDiaAnt=" + fechDiaAnt
+				+ ", volDiaAnt=" + volDiaAnt + ", ifr2=" + ifr2 + ", ifr2DiaAnt=" + ifr2DiaAnt + ", alvo=" + alvo + "]";
 	}
 
 	
+
 }

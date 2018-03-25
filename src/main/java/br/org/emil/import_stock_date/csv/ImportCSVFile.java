@@ -49,15 +49,47 @@ public class ImportCSVFile {
 	
 	private Cotacao readData() throws ParseException {
 		Cotacao data = new Cotacao();
-		data.setData(parseDate("Data")); 
+		data.setData(readDate("Data")); 
+		//Data,Aber,Alta,Baixa,Fech,Vol,Aber (ant),Alta (ant),Baixa (ant),Fech (ant),Vol (ant),RSI,RSI (ant),Alvo
+		data.setAber(readDouble("Aber"));
+		data.setAlta(readDouble("Alta"));
+		data.setBaixa(readDouble("Baixa"));
+		data.setFech(readDouble("Fech"));
+		data.setVolume(readDouble("Vol"));
+		data.setAbertDiaAnt(readDouble("Aber (ant)"));
+		data.setAltaDiaAnt(readDouble("Alta (ant)"));
+		data.setBaixaDiaAnt(readDouble("Baixa (ant)"));
+		data.setFechDiaAnt(readDouble("Fech (ant)"));
+		data.setVolDiaAnt(readDouble("Vol (ant)"));
+		data.setIfr2(readDouble("RSI"));
+		data.setIfr2DiaAnt(readDouble("RSI (ant)"));
+		//TODO Setar esta informação no arquivo
+		data.setAtivo("BVMF3");
 		return data;
 	}
 	
-	public Date parseDate(String fieldName) throws ParseException {
+	public Date readDate(String fieldName) throws ParseException {
 		String fieldValue = record.get(fieldName);
 		if (fieldValue != null && !fieldValue.trim().equals("")) {
 			fieldValue = fieldValue.trim();
 			return dateFormat.parse(fieldValue);
+		}
+		return null;
+	}
+	
+	public Double readDouble(String fieldName) throws ParseException {
+		String fieldValue = record.get(fieldName);
+		if (fieldValue != null && !fieldValue.trim().equals("")) {
+			fieldValue = fieldValue.trim();
+			return Double.valueOf(fieldValue);
+		}
+		return null;
+	}
+	
+	public String readString(String fieldName) throws ParseException {
+		String fieldValue = record.get(fieldName);
+		if (fieldValue != null && !fieldValue.trim().equals("")) {
+			return fieldValue.trim();
 		}
 		return null;
 	}
