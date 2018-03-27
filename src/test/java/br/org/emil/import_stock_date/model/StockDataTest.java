@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import br.org.emil.import_stock_date.csv.ImportCSVFile;
+import br.org.emil.import_stock_date.entity.Cotacao;
 
 /**
  * Unit test for simple App.

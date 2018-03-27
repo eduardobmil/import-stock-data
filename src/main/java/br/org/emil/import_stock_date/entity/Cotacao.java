@@ -1,5 +1,7 @@
-package br.org.emil.import_stock_date.model;
+package br.org.emil.import_stock_date.entity;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -291,6 +293,13 @@ public class Cotacao {
 				+ ", baixa=" + baixa + ", fech=" + fech + ", volume=" + volume + ", abertDiaAnt=" + abertDiaAnt
 				+ ", altaDiaAnt=" + altaDiaAnt + ", baixaDiaAnt=" + baixaDiaAnt + ", fechDiaAnt=" + fechDiaAnt
 				+ ", volDiaAnt=" + volDiaAnt + ", ifr2=" + ifr2 + ", ifr2DiaAnt=" + ifr2DiaAnt + ", alvo=" + alvo + "]";
+	}
+	
+	public LocalDate getLocalDate() {
+		if (data != null) {
+			return data.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		}
+		return null;
 	}
 
 	
