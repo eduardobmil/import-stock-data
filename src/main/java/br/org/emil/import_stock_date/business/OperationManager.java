@@ -36,10 +36,12 @@ public class OperationManager {
 		operacao.setTipoOperacao(EnumTipoOperacao.COMPRA);
 		operacao.setEntrada(cotacao.getData());
 		operacao.setValorEntrada(cotacao.getFech());
-		// TODO Pegar a maior entre o dia atual e os dois anteriores
-		operacao.setAlvo(cotacao.getAlta());
-		// TODO ajustar stop loss
-		operacao.setStopLoss(0d);
+		operacao.setAlvo(cotacao.getAlvo());
+		operacao.setStopLoss(getStopLoss(cotacao));
 		return operacao;
+	}
+	
+	protected Double getStopLoss(Cotacao cotacao) {
+		return cotacao.getFech() * 0.95 - 0.01;
 	}
 }
