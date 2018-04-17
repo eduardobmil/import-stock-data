@@ -87,8 +87,8 @@ public class ImportCSVFile {
 		data.setVolDiaAnt(readDouble("Vol (ant)"));
 		data.setIfr2(readDouble("RSI"));
 		data.setIfr2DiaAnt(readDouble("RSI (ant)"));
-		// TODO Setar esta informação no arquivo
-		data.setAtivo("BVMF3");
+		data.setAtivo(readString("Ativo"));
+		data.setAlvo(readDouble("Alvo"));
 		return data;
 	}
 
