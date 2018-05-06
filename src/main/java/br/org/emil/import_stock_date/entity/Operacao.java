@@ -1,6 +1,5 @@
 package br.org.emil.import_stock_date.entity;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,13 +9,21 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "operacao")
+@NamedQueries({
+    @NamedQuery(name="Operacao.FIND_OPEN_OPERATIONS",
+                query="FROM Operacao op where op.saida is null")    
+}) 
 public class Operacao {
+	
+	public static final String FIND_OPEN_OPERATIONS = "FIND_OPEN_OPERATIONS"; 
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

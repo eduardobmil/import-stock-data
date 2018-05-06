@@ -9,11 +9,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
 @Table(name = "cotacao")
+@NamedQueries({
+    @NamedQuery(name="Cotacao.FIND_OPEN_OPERACTIONS",
+                query="FROM Cotacao c where c.dt_cotacao >= :dtOperacao and c.ativo=:ativo and (c.alvo >=:alvo or c.baixa <= :loss)")    
+}) 
 public class Cotacao {
 
 	@Id

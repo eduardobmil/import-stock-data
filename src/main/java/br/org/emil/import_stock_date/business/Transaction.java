@@ -1,8 +1,11 @@
 package br.org.emil.import_stock_date.business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+
+import br.org.emil.import_stock_date.entity.Operacao;
 
 public class Transaction {
 	private static EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
@@ -36,6 +39,11 @@ public class Transaction {
 			ex.printStackTrace();
 			em.getTransaction().rollback();
 		} 
+	}
+	
+	public static List<Operacao> loadOpenOperations() {
+		EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
+		return em.createNamedQuery(Operacao.FIND_OPEN_OPERATIONS).getResultList();
 	}
 	
 	public static void close() {

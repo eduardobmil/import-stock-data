@@ -35,3 +35,10 @@ CREATE TABLE operacao (
 )
 ENGINE=InnoDB
 DEFAULT CHARSET=utf8;
+
+alter table cotacao add unique index idxDtAtivo (dt_cotacao, ativo);
+alter table operacao add index idxDtVenda (saida);
+alter table operacao add index idxAtivo (ativo);
+
+
+
