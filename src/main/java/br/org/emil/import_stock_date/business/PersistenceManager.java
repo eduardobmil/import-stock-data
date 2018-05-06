@@ -7,6 +7,8 @@ import javax.persistence.Persistence;
 public enum PersistenceManager {
 	INSTANCE;
 	private EntityManagerFactory emFactory;
+	
+	private EntityManager em;
 
 	private PersistenceManager() {
 		// "jpa-example" was the value of the name attribute of the
@@ -15,7 +17,10 @@ public enum PersistenceManager {
 	}
 
 	public EntityManager getEntityManager() {
-		return emFactory.createEntityManager();
+		if (em == null) {
+			em = emFactory.createEntityManager();
+		}
+		return em;
 	}
 
 	public void close() {

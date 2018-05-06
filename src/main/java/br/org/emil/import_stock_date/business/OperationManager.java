@@ -2,6 +2,7 @@ package br.org.emil.import_stock_date.business;
 
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.List;
 
 import br.org.emil.import_stock_date.entity.Cotacao;
 import br.org.emil.import_stock_date.entity.EnumTipoOperacao;
@@ -43,5 +44,34 @@ public class OperationManager {
 	
 	protected Double getStopLoss(Cotacao cotacao) {
 		return cotacao.getFech() * 0.95 - 0.01;
+	}
+	
+	public void marqueVendas() {
+		List<Operacao> operacoes = Transaction.loadOpenOperations();
+		for (Operacao operacao : operacoes) {
+			Cotacao cotacao = Transaction.findVenda(operacao);
+			if (cotacao != null) {
+				operacao.setSaida(cotacao.getData());
+				Double venda = getValorVenda(cotacao, operacao);
+				operacao.setValorSaida(venda);
+				Double variacao = ((venda - operacao.getValorEntrada()) / operacao.getValorEntrada()) * 100;
+				operacao.setVariacaoPerc(variacao);
+				Transaction.save(operacao);
+			}
+		}
+	}
+	
+	protected Double getValorVenda(Cotacao cotacao, Operacao oper) {
+		if (cotacao.getAlta() >= oper.getAlvo() && cotacao.getBaixa() <= oper.getStopLoss()) {
+			// Há uma indefinição sobre o valor. Por enquanto retorna null
+			return null;
+		} 
+		if (cotacao.getAlta() >= oper.getAlvo()) {
+			return oper.getAlvo(); 
+		}
+		if (cotacao.getBaixa() <= oper.getStopLoss()) {
+			return oper.getStopLoss(); 
+		}
+		throw new IllegalArgumentException("Entrou em fluxo de venda com valores incorretos. Operação: " + oper + ". Cotação: " + cotacao);
 	}
 }

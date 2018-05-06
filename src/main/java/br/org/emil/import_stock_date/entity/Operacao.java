@@ -19,11 +19,11 @@ import javax.persistence.TemporalType;
 @Table(name = "operacao")
 @NamedQueries({
     @NamedQuery(name="Operacao.FIND_OPEN_OPERATIONS",
-                query="FROM Operacao op where op.saida is null")    
+                query="FROM Operacao op where op.saida is null order by op.id asc")    
 }) 
 public class Operacao {
 	
-	public static final String FIND_OPEN_OPERATIONS = "FIND_OPEN_OPERATIONS"; 
+	public static final String FIND_OPEN_OPERATIONS = "Operacao.FIND_OPEN_OPERATIONS"; 
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

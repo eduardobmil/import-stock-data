@@ -17,11 +17,13 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "cotacao")
 @NamedQueries({
-    @NamedQuery(name="Cotacao.FIND_OPEN_OPERACTIONS",
-                query="FROM Cotacao c where c.dt_cotacao >= :dtOperacao and c.ativo=:ativo and (c.alvo >=:alvo or c.baixa <= :loss)")    
+    @NamedQuery(name="Cotacao.FIND_VENDA",
+                query="FROM Cotacao c where c.data > :dtOperacao and c.ativo=:ativo and (c.alta >=:alvo or c.baixa <= :loss) order by c.id asc")    
 }) 
 public class Cotacao {
 
+	public static final String FIND_VENDA = "Cotacao.FIND_VENDA";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
